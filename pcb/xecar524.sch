@@ -1538,25 +1538,14 @@ Wire Wire Line
 Wire Wire Line
 	2400 5800 2400 5500
 Connection ~ 2400 5500
-Text GLabel 6900 1550 2    50   Input ~ 0
+Text GLabel 6900 1450 2    50   Input ~ 0
 CFG0
 Wire Wire Line
 	6900 1450 6800 1450
-Text GLabel 6900 1450 2    50   Input ~ 0
+Text GLabel 6900 1550 2    50   Input ~ 0
 CFG1
 Wire Wire Line
 	6900 1550 6800 1550
-$Comp
-L Connector_Generic:Conn_02x02_Odd_Even J3
-U 1 1 61481D01
-P 1600 5600
-F 0 "J3" H 1650 5725 50  0000 C CNN
-F 1 "Conn_02x02_Odd_Even" H 1650 5726 50  0001 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Horizontal" H 1600 5600 50  0001 C CNN
-F 3 "~" H 1600 5600 50  0001 C CNN
-	1    1600 5600
-	-1   0    0    -1  
-$EndComp
 Text Notes 2900 1200 0    50   ~ 0
 green
 Text Notes 3100 3550 0    50   ~ 0
@@ -1567,4 +1556,15 @@ Wire Wire Line
 	3300 3550 3550 3550
 Wire Wire Line
 	3300 3750 3550 3750
+$Comp
+L Connector_Generic:Conn_02x02_Odd_Even J3
+U 1 1 61481D01
+P 1600 5700
+F 0 "J3" H 1650 5500 50  0000 C CNN
+F 1 "Conn_02x02_Odd_Even" H 1650 5826 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Horizontal" H 1600 5700 50  0001 C CNN
+F 3 "~" H 1600 5700 50  0001 C CNN
+	1    1600 5700
+	-1   0    0    1   
+$EndComp
 $EndSCHEMATC
