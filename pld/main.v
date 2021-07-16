@@ -3,8 +3,8 @@
 // $20000..$2FFFF - Sparta DOS X 4.22, 64k (SDX422.rom)
 //
 // Configuration (CFG1:CFG0):
-// 11 - Sparta DOS X 64k
-// 01 - Sparta DOS X 128k
+// 1x - Sparta DOS X 64k
+// 0x - Sparta DOS X 128k
 //
 
 `timescale 1ns / 1ps
@@ -28,24 +28,25 @@ module main(
   output led_y, // LED3
   input cfg0,
   input cfg1,
-  input mode,
-  input sel_n,
-  output aux,
-  input mosi,
-  output miso,
-  input sck);
+  output mode,  // PMRD
+  output sel_n, // PMWR
+  inout aux,    // PMD3
+  inout mosi,   // PMD2
+  inout miso,   // PMD1
+  inout sck);   // PMD0
 
 reg init = 0;
 reg sel_64k = 0;
 reg sel_128k = 0;
-
 reg [3:0] sdx_bank = 4'b1111;
+wire rtc = ~cctl_n && (cart_a[7:3] == 5'b10111);
 
 assign led_y = ~sel_64k;
 assign led_r = ~sel_128k;
 
 assign cart_d[7:0] = (rd4 & ~s4_n & s5_n & r_w & phi2) ? rom_d :
                      (rd5 & ~s5_n & s4_n & r_w & phi2) ? rom_d :
+                     (rtc & r_w) ? {4'b0000, aux, mosi, miso, sck} :
                      8'hzz;
 assign rom_a = (sel_64k  & rd5 & ~s5_n) ? {3'b010, sdx_bank[2:0], cart_a[12:0]} :
                (sel_128k & rd5 & ~s5_n) ? {2'b00, sdx_bank[3:0], cart_a[12:0]} :
@@ -58,8 +59,8 @@ assign ce_n = ~(rd5 & ~s5_n);
 always @(posedge phi2) begin
   if (~init) begin
     init <= 1'b1;
-    sel_64k <= cfg0 & cfg1;
-    sel_128k <= cfg0 & ~cfg1;
+    sel_64k <= cfg1;
+    sel_128k <= ~cfg1;
   end
   if (sel_64k) begin
     if (~cctl_n && ~r_w && (cart_a[7:4] == 4'b1110)) begin
@@ -88,7 +89,8 @@ always @(posedge phi2) begin
   end
 end
 
-assign miso = 0;
-assign aux  = 0;
+assign mode = rtc & r_w;           // PMRD
+assign sel_n = rtc & ~r_w & phi2;  // PMWR
+assign {aux, mosi, miso, sck} = (rtc & ~r_w) ? cart_d[3:0] : 4'bzzzz;
 
 endmodule

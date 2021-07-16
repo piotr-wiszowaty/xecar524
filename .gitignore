@@ -24,3 +24,9 @@ fp-info-cache
 # Exported BOM files
 *.xml
 *.csv
+
+/rtime8_emu/nbproject
+/rtime8_emu/build/
+/rtime8_emu/debug/
+/rtime8_emu/dist/
+/rtime8_emu/.generated_files
