@@ -477,10 +477,6 @@ NoConn ~ 6250 3750
 NoConn ~ 6250 3650
 NoConn ~ 6250 3550
 NoConn ~ 6250 3450
-NoConn ~ 6250 3350
-NoConn ~ 6250 3250
-NoConn ~ 7650 3450
-NoConn ~ 7650 3550
 NoConn ~ 7650 3650
 NoConn ~ 7650 3750
 NoConn ~ 7650 3850
@@ -538,4 +534,60 @@ Wire Wire Line
 	3000 3200 3150 3200
 Wire Wire Line
 	3550 3200 3750 3200
+$Comp
+L Connector:Conn_01x05_Male J4
+U 1 1 61241826
+P 3400 5950
+F 0 "J4" H 3508 6331 50  0000 C CNN
+F 1 "TEST" H 3508 6240 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical" H 3400 5950 50  0001 C CNN
+F 3 "~" H 3400 5950 50  0001 C CNN
+	1    3400 5950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND TEST0
+U 1 1 612443C8
+P 3700 5750
+F 0 "TEST0" H 3700 5500 50  0001 C CNN
+F 1 "GND" V 3705 5622 50  0000 R CNN
+F 2 "" H 3700 5750 50  0001 C CNN
+F 3 "" H 3700 5750 50  0001 C CNN
+	1    3700 5750
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3700 5750 3600 5750
+Text GLabel 3700 5850 2    50   Input ~ 0
+TEST0
+Text GLabel 3700 5950 2    50   Input ~ 0
+TEST1
+Text GLabel 3700 6050 2    50   Input ~ 0
+TEST2
+Text GLabel 3700 6150 2    50   Input ~ 0
+TEST3
+Wire Wire Line
+	3600 6150 3700 6150
+Wire Wire Line
+	3700 6050 3600 6050
+Wire Wire Line
+	3600 5950 3700 5950
+Wire Wire Line
+	3600 5850 3700 5850
+Text GLabel 7700 3450 2    50   Input ~ 0
+TEST0
+Text GLabel 7700 3550 2    50   Input ~ 0
+TEST1
+Text GLabel 6200 3250 0    50   Input ~ 0
+TEST2
+Text GLabel 6200 3350 0    50   Input ~ 0
+TEST3
+Wire Wire Line
+	6200 3250 6250 3250
+Wire Wire Line
+	6250 3350 6200 3350
+Wire Wire Line
+	7700 3450 7650 3450
+Wire Wire Line
+	7650 3550 7700 3550
 $EndSCHEMATC
