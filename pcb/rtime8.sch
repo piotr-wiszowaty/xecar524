@@ -377,27 +377,27 @@ PGC
 $Comp
 L Device:Battery_Cell BT1
 U 1 1 6102C16A
-P 3350 3700
-F 0 "BT1" H 3468 3796 50  0000 L CNN
-F 1 "CR2032" H 3468 3705 50  0000 L CNN
-F 2 "Miscellaneous:BatteryHolder_Connfly_DS1092-10" V 3350 3760 50  0001 C CNN
-F 3 "~" V 3350 3760 50  0001 C CNN
-	1    3350 3700
+P 3000 3700
+F 0 "BT1" H 3118 3796 50  0000 L CNN
+F 1 "CR2032" H 3118 3705 50  0000 L CNN
+F 2 "Miscellaneous:BatteryHolder_Connfly_DS1092-10" V 3000 3760 50  0001 C CNN
+F 3 "~" V 3000 3760 50  0001 C CNN
+	1    3000 3700
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR0118
 U 1 1 6102C63F
-P 3350 3850
-F 0 "#PWR0118" H 3350 3600 50  0001 C CNN
-F 1 "GND" H 3355 3677 50  0000 C CNN
-F 2 "" H 3350 3850 50  0001 C CNN
-F 3 "" H 3350 3850 50  0001 C CNN
-	1    3350 3850
+P 3000 3850
+F 0 "#PWR0118" H 3000 3600 50  0001 C CNN
+F 1 "GND" H 3005 3677 50  0000 C CNN
+F 2 "" H 3000 3850 50  0001 C CNN
+F 3 "" H 3000 3850 50  0001 C CNN
+	1    3000 3850
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3350 3850 3350 3800
+	3000 3850 3000 3800
 Wire Wire Line
 	3650 4900 3600 4900
 Wire Wire Line
@@ -434,9 +434,7 @@ F 3 "https://assets.nexperia.com/documents/data-sheet/1PS70SB15.pdf" H 3970 3200
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3350 3500 3350 3200
-Wire Wire Line
-	3350 3200 3750 3200
+	3000 3500 3000 3200
 $Comp
 L power:VDD #PWR0119
 U 1 1 61049835
@@ -525,4 +523,19 @@ F 3 "~" H 3400 5200 50  0001 C CNN
 	1    3400 5200
 	1    0    0    1   
 $EndComp
+$Comp
+L Jumper:Jumper_2_Bridged JP1
+U 1 1 61224A7B
+P 3350 3200
+F 0 "JP1" H 3350 3303 50  0000 C CNN
+F 1 "Jumper_2_Bridged" H 3350 3304 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 3350 3200 50  0001 C CNN
+F 3 "~" H 3350 3200 50  0001 C CNN
+	1    3350 3200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3000 3200 3150 3200
+Wire Wire Line
+	3550 3200 3750 3200
 $EndSCHEMATC
