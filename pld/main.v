@@ -28,12 +28,10 @@ module main(
   output led_y, // LED3
   input cfg0,
   input cfg1,
-  output mode,  // PMRD
-  output sel_n, // PMWR
-  inout aux,    // PMD3
-  inout mosi,   // PMD2
-  inout miso,   // PMD1
-  inout sck);   // PMD0
+  output pmcs1,
+  output pmrd,
+  output pmwr,
+  inout [3:0] pmd);
 
 reg init = 0;
 reg sel_64k = 0;
@@ -46,7 +44,7 @@ assign led_r = ~sel_128k;
 
 assign cart_d[7:0] = (rd4 & ~s4_n & s5_n & r_w & phi2) ? rom_d :
                      (rd5 & ~s5_n & s4_n & r_w & phi2) ? rom_d :
-                     (rtc & r_w) ? {4'b0000, aux, mosi, miso, sck} :
+                     (rtc & r_w) ? {4'b0000, pmd} :
                      8'hzz;
 assign rom_a = (sel_64k  & rd5 & ~s5_n) ? {3'b010, sdx_bank[2:0], cart_a[12:0]} :
                (sel_128k & rd5 & ~s5_n) ? {2'b00, sdx_bank[3:0], cart_a[12:0]} :
@@ -89,8 +87,9 @@ always @(posedge phi2) begin
   end
 end
 
-assign mode = rtc & r_w;           // PMRD
-assign sel_n = rtc & ~r_w & phi2;  // PMWR
-assign {aux, mosi, miso, sck} = (rtc & ~r_w) ? cart_d[3:0] : 4'bzzzz;
+assign pmrd = rtc & r_w;
+assign pmwr = rtc & ~r_w & phi2;
+assign pmcs1 = pmrd | pmwr;
+assign pmd = (rtc & ~r_w) ? cart_d[3:0] : 4'bzzzz;
 
 endmodule

@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 1
+Sheet 1 2
 Title ""
 Date ""
 Rev ""
@@ -406,17 +406,6 @@ F 1 "Atari_XE_Cartridge_Connector" H 2350 2750 50  0000 C CNN
 F 2 "Miscellaneous:Atari_XE_Cartridge_Connector" H 1800 2650 50  0001 C CNN
 F 3 "http://atariki.krap.pl/index.php/Gniazdo_cartridge%27a" H 1700 3800 50  0001 C CNN
 	1    1750 3600
-	1    0    0    -1  
-$EndComp
-$Comp
-L CPLD_Xilinx:XC95144XL-TQ100 U3
-U 1 1 61014D55
-P 5800 3650
-F 0 "U3" H 5050 6200 50  0000 C CNN
-F 1 "XC95144XL-TQ100" H 6600 1100 50  0000 C CNN
-F 2 "Package_QFP:TQFP-100_14x14mm_P0.5mm" H 5800 3650 50  0001 C CNN
-F 3 "https://www.xilinx.com/support/documentation/data_sheets/ds056.pdf" H 5800 3650 50  0001 C CNN
-	1    5800 3650
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -943,29 +932,29 @@ Text GLabel 6900 5450 2    50   Input ~ 0
 ROM_A16
 Wire Wire Line
 	6900 5450 6800 5450
-Text GLabel 6900 5550 2    50   Input ~ 0
+Text GLabel 6900 2450 2    50   Input ~ 0
 WE#
 Wire Wire Line
 	6900 5550 6800 5550
-Text GLabel 6900 2450 2    50   Input ~ 0
+Text GLabel 6900 2550 2    50   Input ~ 0
 ROM_A17
 Wire Wire Line
 	6900 2450 6800 2450
-Text GLabel 6900 2550 2    50   Input ~ 0
+Text GLabel 6900 2650 2    50   Input ~ 0
 ROM_A14
 Wire Wire Line
 	6900 2550 6800 2550
 Wire Wire Line
 	6900 2650 6800 2650
-Text GLabel 6900 2650 2    50   Input ~ 0
+Text GLabel 6900 2750 2    50   Input ~ 0
 ROM_A13
-Text GLabel 6900 3550 2    50   Input ~ 0
-ROM_D6
-Text GLabel 6900 2050 2    50   Input ~ 0
-ROM_D7
 Text GLabel 6900 3650 2    50   Input ~ 0
-CE#
+ROM_D6
+Text GLabel 6900 3550 2    50   Input ~ 0
+ROM_D7
 Text GLabel 6900 2150 2    50   Input ~ 0
+CE#
+Text GLabel 6900 1750 2    50   Input ~ 0
 OE#
 Wire Wire Line
 	6800 3550 6900 3550
@@ -975,7 +964,7 @@ Wire Wire Line
 	6800 3650 6900 3650
 Wire Wire Line
 	6800 2150 6900 2150
-Text GLabel 6900 1750 2    50   Input ~ 0
+Text GLabel 6900 2050 2    50   Input ~ 0
 ROM_A10
 Wire Wire Line
 	6900 1750 6800 1750
@@ -1048,166 +1037,6 @@ Wire Wire Line
 	8950 5950 9450 5950
 Wire Wire Line
 	9450 5850 9200 5850
-$Comp
-L Connector:Conn_01x08_Male J2
-U 1 1 61185382
-P 1100 7050
-F 0 "J2" H 1208 7531 50  0000 C CNN
-F 1 "PROG" H 1208 7440 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Horizontal_HighProfile" H 1100 7050 50  0001 C CNN
-F 3 "~" H 1100 7050 50  0001 C CNN
-	1    1100 7050
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R_Small R10
-U 1 1 6118A684
-P 2000 7150
-F 0 "R10" V 1950 7000 50  0000 C CNN
-F 1 "100" V 1950 7300 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 2000 7150 50  0001 C CNN
-F 3 "~" H 2000 7150 50  0001 C CNN
-	1    2000 7150
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R_Small R11
-U 1 1 6118A8DE
-P 2000 7250
-F 0 "R11" V 1950 7100 50  0000 C CNN
-F 1 "100" V 1950 7400 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 2000 7250 50  0001 C CNN
-F 3 "~" H 2000 7250 50  0001 C CNN
-	1    2000 7250
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R_Small R12
-U 1 1 6118A8E8
-P 2000 7350
-F 0 "R12" V 1950 7200 50  0000 C CNN
-F 1 "100" V 1950 7500 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 2000 7350 50  0001 C CNN
-F 3 "~" H 2000 7350 50  0001 C CNN
-	1    2000 7350
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R_Small R13
-U 1 1 6118A8F2
-P 2000 7450
-F 0 "R13" V 1950 7300 50  0000 C CNN
-F 1 "100" V 1950 7600 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 2000 7450 50  0001 C CNN
-F 3 "~" H 2000 7450 50  0001 C CNN
-	1    2000 7450
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R_Small R9
-U 1 1 6118A8FC
-P 2000 7050
-F 0 "R9" V 1950 6900 50  0000 C CNN
-F 1 "100" V 1950 7200 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 2000 7050 50  0001 C CNN
-F 3 "~" H 2000 7050 50  0001 C CNN
-	1    2000 7050
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	1300 7250 1900 7250
-Wire Wire Line
-	1300 7350 1900 7350
-Wire Wire Line
-	1300 7450 1900 7450
-Wire Wire Line
-	2100 7450 2500 7450
-Wire Wire Line
-	2500 7350 2100 7350
-Wire Wire Line
-	2100 7250 2500 7250
-Wire Wire Line
-	2500 7150 2100 7150
-$Comp
-L power:GND #PWR01
-U 1 1 611A4CBD
-P 1400 6850
-F 0 "#PWR01" H 1400 6600 50  0001 C CNN
-F 1 "GND" V 1405 6722 50  0000 R CNN
-F 2 "" H 1400 6850 50  0001 C CNN
-F 3 "" H 1400 6850 50  0001 C CNN
-	1    1400 6850
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	1400 6850 1300 6850
-$Comp
-L Device:R_Small R8
-U 1 1 611CD721
-P 2000 6950
-F 0 "R8" V 1950 6800 50  0000 C CNN
-F 1 "100" V 1950 7100 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 2000 6950 50  0001 C CNN
-F 3 "~" H 2000 6950 50  0001 C CNN
-	1    2000 6950
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R_Small R7
-U 1 1 611CDA81
-P 2000 6850
-F 0 "R7" V 1950 6700 50  0000 C CNN
-F 1 "10k" V 1950 7000 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 2000 6850 50  0001 C CNN
-F 3 "~" H 2000 6850 50  0001 C CNN
-	1    2000 6850
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	1300 7150 1900 7150
-Wire Wire Line
-	1300 7050 1900 7050
-Wire Wire Line
-	2500 6950 2300 6950
-Wire Wire Line
-	2100 7050 2500 7050
-Text GLabel 2500 6950 2    50   Input ~ 0
-MODE
-Text GLabel 2500 7050 2    50   Input ~ 0
-SEL#
-Text GLabel 2500 7250 2    50   Input ~ 0
-MOSI
-Text GLabel 2500 7350 2    50   Input ~ 0
-MISO
-$Comp
-L power:+3.3V #PWR02
-U 1 1 611B9BAC
-P 1750 6550
-F 0 "#PWR02" H 1750 6400 50  0001 C CNN
-F 1 "+3.3V" H 1765 6678 50  0000 L CNN
-F 2 "" H 1750 6550 50  0001 C CNN
-F 3 "" H 1750 6550 50  0001 C CNN
-	1    1750 6550
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	1300 6950 1900 6950
-Wire Wire Line
-	1300 6750 1750 6750
-Wire Wire Line
-	1750 6750 1750 6550
-Wire Wire Line
-	1900 6850 1750 6850
-Wire Wire Line
-	1750 6850 1750 6750
-Connection ~ 1750 6750
-Wire Wire Line
-	2100 6850 2300 6850
-Wire Wire Line
-	2300 6850 2300 6950
-Connection ~ 2300 6950
-Wire Wire Line
-	2300 6950 2100 6950
 Wire Wire Line
 	8150 5850 8750 5850
 Wire Wire Line
@@ -1228,15 +1057,15 @@ Wire Wire Line
 	9200 5850 8950 5850
 Wire Wire Line
 	6800 2750 6900 2750
-Text GLabel 6900 2750 2    50   Input ~ 0
+Text GLabel 6900 2850 2    50   Input ~ 0
 ROM_A8
 Wire Wire Line
 	6800 2850 6900 2850
-Text GLabel 6900 2850 2    50   Input ~ 0
+Text GLabel 6900 2950 2    50   Input ~ 0
 ROM_A9
 Wire Wire Line
 	6900 2950 6800 2950
-Text GLabel 6900 2950 2    50   Input ~ 0
+Text GLabel 6900 1650 2    50   Input ~ 0
 ROM_A11
 Wire Wire Line
 	6900 3050 6800 3050
@@ -1258,13 +1087,13 @@ Wire Wire Line
 	6800 3850 6900 3850
 Wire Wire Line
 	6900 3750 6800 3750
-Text GLabel 6900 3850 2    50   Input ~ 0
-ROM_D5
 Text GLabel 6900 3750 2    50   Input ~ 0
+ROM_D5
+Text GLabel 6900 3850 2    50   Input ~ 0
 ROM_D4
 Text GLabel 6900 3950 2    50   Input ~ 0
 ROM_D3
-Text GLabel 6900 4050 2    50   Input ~ 0
+Text GLabel 6900 4150 2    50   Input ~ 0
 ROM_D1
 Wire Wire Line
 	6900 4450 6800 4450
@@ -1280,18 +1109,16 @@ Wire Wire Line
 	6900 4250 6800 4250
 Wire Wire Line
 	6900 4150 6800 4150
-Text GLabel 6900 4150 2    50   Input ~ 0
+Text GLabel 6900 4050 2    50   Input ~ 0
 ROM_D2
-Text GLabel 4700 2550 0    50   Input ~ 0
-MODE
-Text GLabel 4700 2650 0    50   Input ~ 0
-SEL#
-Text GLabel 4700 4050 0    50   Input ~ 0
-MOSI
 Text GLabel 4700 3950 0    50   Input ~ 0
-MISO
-Wire Wire Line
-	4800 2650 4700 2650
+PMCS1
+Text GLabel 4700 4050 0    50   Input ~ 0
+PMRD
+Text GLabel 6900 1250 2    50   Input ~ 0
+PMD2
+Text GLabel 4700 4450 0    50   Input ~ 0
+PMD1
 Wire Wire Line
 	4700 4150 4800 4150
 Wire Wire Line
@@ -1300,8 +1127,6 @@ Wire Wire Line
 	4700 3950 4800 3950
 Wire Wire Line
 	4800 3850 4700 3850
-Wire Wire Line
-	4700 2550 4800 2550
 $Comp
 L Device:C_Polarized C11
 U 1 1 6176FD9D
@@ -1337,7 +1162,7 @@ U 1 1 60C7347A
 P 9650 3450
 F 0 "U4" H 9300 4500 50  0000 C CNN
 F 1 "SST39VF040" H 9950 2400 50  0000 C CNN
-F 2 "Package_LCC:PLCC-32_THT-Socket" H 9700 3450 50  0001 C CNN
+F 2 "Miscellaneous:PLCC-32_SMD-Socket" H 9700 3450 50  0001 C CNN
 F 3 "https://ww1.microchip.com/downloads/en/DeviceDoc/20005023B.pdf" H 9650 3750 50  0001 C CNN
 	1    9650 3450
 	1    0    0    -1  
@@ -1346,22 +1171,18 @@ Text GLabel 8950 4350 0    50   Input ~ 0
 ROM_A18
 Wire Wire Line
 	9050 4350 8950 4350
-Text GLabel 6900 1650 2    50   Input ~ 0
+Text GLabel 6900 5550 2    50   Input ~ 0
 ROM_A18
 Wire Wire Line
 	6900 1650 6800 1650
+Text GLabel 6900 1350 2    50   Input ~ 0
+PMD3
 Text GLabel 4700 4150 0    50   Input ~ 0
-AUX
-Text GLabel 4700 3850 0    50   Input ~ 0
-SCK
+PMD0
 Wire Wire Line
 	6900 3150 6800 3150
 Text GLabel 6900 3150 2    50   Input ~ 0
 Phi2
-Text GLabel 2500 7450 2    50   Input ~ 0
-SCK
-Text GLabel 2500 7150 2    50   Input ~ 0
-AUX
 $Comp
 L Device:LED D3
 U 1 1 60DA2752
@@ -1440,11 +1261,10 @@ Wire Wire Line
 	4700 3550 4800 3550
 NoConn ~ 4800 4250
 NoConn ~ 4800 4350
-NoConn ~ 4800 4450
+NoConn ~ 4800 2650
 NoConn ~ 6800 1950
 NoConn ~ 6800 1850
-NoConn ~ 6800 1350
-NoConn ~ 6800 1250
+NoConn ~ 4800 2550
 NoConn ~ 4800 1850
 NoConn ~ 4800 1950
 NoConn ~ 4800 2050
@@ -1567,4 +1387,29 @@ F 3 "~" H 1600 5700 50  0001 C CNN
 	1    1600 5700
 	-1   0    0    1   
 $EndComp
+$Sheet
+S 2350 6650 1200 650 
+U 60FB7BC7
+F0 "rtime8" 50
+F1 "rtime8.sch" 50
+$EndSheet
+$Comp
+L CPLD_Xilinx:XC95144XL-TQ100 U3
+U 1 1 61014D55
+P 5800 3650
+F 0 "U3" H 5050 6200 50  0000 C CNN
+F 1 "XC95144XL-TQ100" H 6600 1100 50  0000 C CNN
+F 2 "Package_QFP:TQFP-100_14x14mm_P0.5mm" H 5800 3650 50  0001 C CNN
+F 3 "https://www.xilinx.com/support/documentation/data_sheets/ds056.pdf" H 5800 3650 50  0001 C CNN
+	1    5800 3650
+	1    0    0    -1  
+$EndComp
+Text GLabel 4700 3850 0    50   Input ~ 0
+PMWR
+Wire Wire Line
+	6900 1350 6800 1350
+Wire Wire Line
+	6800 1250 6900 1250
+Wire Wire Line
+	4700 4450 4800 4450
 $EndSCHEMATC
