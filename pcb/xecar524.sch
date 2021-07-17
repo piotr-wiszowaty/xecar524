@@ -1412,4 +1412,15 @@ Wire Wire Line
 	6800 1250 6900 1250
 Wire Wire Line
 	4700 4450 4800 4450
+$Comp
+L Graphic:Logo_Open_Hardware_Small LOGO1
+U 1 1 6123A3D4
+P 1150 7050
+F 0 "LOGO1" H 1150 7325 50  0001 C CNN
+F 1 "Logo_Open_Hardware_Small" H 1150 6825 50  0001 C CNN
+F 2 "Symbol:OSHW-Symbol_13.4x12mm_Copper" H 1150 7050 50  0001 C CNN
+F 3 "~" H 1150 7050 50  0001 C CNN
+	1    1150 7050
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
