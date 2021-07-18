@@ -1120,11 +1120,11 @@ PMD2
 Text GLabel 6900 1350 2    50   Input ~ 0
 PMD1
 Wire Wire Line
-	4700 4150 4800 4150
+	4700 4050 4800 4050
 Wire Wire Line
-	4800 4050 4700 4050
+	4800 3950 4700 3950
 Wire Wire Line
-	4700 3950 4800 3950
+	4700 3850 4800 3850
 Wire Wire Line
 	4800 4250 4700 4250
 $Comp
@@ -1259,7 +1259,6 @@ Text GLabel 4700 3550 0    50   Input ~ 0
 Phi2
 Wire Wire Line
 	4700 3550 4800 3550
-NoConn ~ 4800 3850
 NoConn ~ 4800 2650
 NoConn ~ 6800 1950
 NoConn ~ 6800 1850
@@ -1332,11 +1331,11 @@ Text GLabel 2750 5700 2    50   Input ~ 0
 CFG1
 Wire Wire Line
 	2000 5250 2000 5200
-Text GLabel 4700 4050 0    50   Input ~ 0
+Text GLabel 4700 3950 0    50   Input ~ 0
 CFG0
 Wire Wire Line
 	6900 1450 6800 1450
-Text GLabel 4700 4150 0    50   Input ~ 0
+Text GLabel 4700 4050 0    50   Input ~ 0
 CFG1
 Wire Wire Line
 	6900 1550 6800 1550
@@ -1450,6 +1449,10 @@ Wire Wire Line
 Connection ~ 2300 5200
 Wire Wire Line
 	4700 4350 4800 4350
-Text GLabel 4700 3950 0    50   Input ~ 0
+Text GLabel 4700 3850 0    50   Input ~ 0
 CFG2
+Text GLabel 4700 4150 0    50   Input ~ 0
+MODE
+Wire Wire Line
+	4700 4150 4800 4150
 $EndSCHEMATC

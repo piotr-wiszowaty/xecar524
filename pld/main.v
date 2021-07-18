@@ -32,7 +32,8 @@ module main(
   output pmcs1,
   output pmrd,
   output pmwr,
-  inout [3:0] pmd);
+  inout [3:0] pmd,
+  input mode);
 
 reg init = 0;
 reg sel_64k = 0;

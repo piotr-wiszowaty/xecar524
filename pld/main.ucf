@@ -66,10 +66,11 @@ NET "pmd<0>" LOC = "P35";
 NET "pmd<1>" LOC = "P36";
 NET "pmd<2>" LOC = "P37";
 NET "pmd<3>" LOC = "P39";
+NET "mode" LOC = "P30";
 
-NET "cfg0" LOC = "P29";
-NET "cfg1" LOC = "P30";
-NET "cfg2" LOC = "P28";
+NET "cfg0" LOC = "P28";
+NET "cfg1" LOC = "P29";
+NET "cfg2" LOC = "P27";
 
 NET "led_r" LOC = "P24";
 NET "led_y" LOC = "P25";
