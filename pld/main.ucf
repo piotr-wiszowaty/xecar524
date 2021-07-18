@@ -1,4 +1,4 @@
-NET "phi2" LOC = "P82";
+#NET "phi2" LOC = "P82";
 NET "phi2" LOC = "P23";
 NET "r_w" LOC = "P85";
 NET "rd4" LOC = "P15";
