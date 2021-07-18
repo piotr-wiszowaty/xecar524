@@ -1111,13 +1111,13 @@ Wire Wire Line
 	6900 4150 6800 4150
 Text GLabel 6900 4050 2    50   Input ~ 0
 ROM_D2
-Text GLabel 4700 3950 0    50   Input ~ 0
+Text GLabel 4700 4350 0    50   Input ~ 0
 PMCS1
-Text GLabel 4700 4050 0    50   Input ~ 0
-PMRD
-Text GLabel 6900 1250 2    50   Input ~ 0
-PMD2
 Text GLabel 4700 4450 0    50   Input ~ 0
+PMRD
+Text GLabel 6900 1450 2    50   Input ~ 0
+PMD2
+Text GLabel 6900 1350 2    50   Input ~ 0
 PMD1
 Wire Wire Line
 	4700 4150 4800 4150
@@ -1126,7 +1126,7 @@ Wire Wire Line
 Wire Wire Line
 	4700 3950 4800 3950
 Wire Wire Line
-	4800 3850 4700 3850
+	4800 4250 4700 4250
 $Comp
 L Device:C_Polarized C11
 U 1 1 6176FD9D
@@ -1175,9 +1175,9 @@ Text GLabel 6900 5550 2    50   Input ~ 0
 ROM_A18
 Wire Wire Line
 	6900 1650 6800 1650
-Text GLabel 6900 1350 2    50   Input ~ 0
+Text GLabel 6900 1550 2    50   Input ~ 0
 PMD3
-Text GLabel 4700 4150 0    50   Input ~ 0
+Text GLabel 6900 1250 2    50   Input ~ 0
 PMD0
 Wire Wire Line
 	6900 3150 6800 3150
@@ -1259,8 +1259,7 @@ Text GLabel 4700 3550 0    50   Input ~ 0
 Phi2
 Wire Wire Line
 	4700 3550 4800 3550
-NoConn ~ 4800 4250
-NoConn ~ 4800 4350
+NoConn ~ 4800 3850
 NoConn ~ 4800 2650
 NoConn ~ 6800 1950
 NoConn ~ 6800 1850
@@ -1277,49 +1276,49 @@ Wire Wire Line
 $Comp
 L Device:R_Small R16
 U 1 1 61313112
-P 2100 5500
-F 0 "R16" V 1900 5500 50  0000 C CNN
-F 1 "10k" V 2000 5500 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 2100 5500 50  0001 C CNN
-F 3 "~" H 2100 5500 50  0001 C CNN
-	1    2100 5500
-	0    1    1    0   
+P 2000 5350
+F 0 "R16" H 1900 5400 50  0000 C CNN
+F 1 "10k" H 1900 5300 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 2000 5350 50  0001 C CNN
+F 3 "~" H 2000 5350 50  0001 C CNN
+	1    2000 5350
+	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R17
 U 1 1 61314B45
-P 2100 5800
-F 0 "R17" V 2200 5800 50  0000 C CNN
-F 1 "10k" V 2300 5800 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 2100 5800 50  0001 C CNN
-F 3 "~" H 2100 5800 50  0001 C CNN
-	1    2100 5800
-	0    1    1    0   
+P 2300 5350
+F 0 "R17" H 2400 5300 50  0000 C CNN
+F 1 "10k" H 2400 5400 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 2300 5350 50  0001 C CNN
+F 3 "~" H 2300 5350 50  0001 C CNN
+	1    2300 5350
+	-1   0    0    1   
 $EndComp
 $Comp
 L power:+3.3V #PWR05
 U 1 1 61314FD0
-P 2400 5350
-F 0 "#PWR05" H 2400 5200 50  0001 C CNN
-F 1 "+3.3V" H 2415 5478 50  0000 L CNN
-F 2 "" H 2400 5350 50  0001 C CNN
-F 3 "" H 2400 5350 50  0001 C CNN
-	1    2400 5350
+P 2000 5150
+F 0 "#PWR05" H 2000 5000 50  0001 C CNN
+F 1 "+3.3V" H 2015 5278 50  0000 L CNN
+F 2 "" H 2000 5150 50  0001 C CNN
+F 3 "" H 2000 5150 50  0001 C CNN
+	1    2000 5150
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR04
 U 1 1 6132FDE7
-P 1200 5800
-F 0 "#PWR04" H 1200 5550 50  0001 C CNN
-F 1 "GND" H 1205 5627 50  0000 C CNN
-F 2 "" H 1200 5800 50  0001 C CNN
-F 3 "" H 1200 5800 50  0001 C CNN
-	1    1200 5800
+P 1200 5900
+F 0 "#PWR04" H 1200 5650 50  0001 C CNN
+F 1 "GND" H 1205 5727 50  0000 C CNN
+F 2 "" H 1200 5900 50  0001 C CNN
+F 3 "" H 1200 5900 50  0001 C CNN
+	1    1200 5900
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1200 5800 1200 5700
+	1200 5900 1200 5800
 Wire Wire Line
 	1200 5700 1300 5700
 Wire Wire Line
@@ -1327,42 +1326,17 @@ Wire Wire Line
 Wire Wire Line
 	1200 5600 1300 5600
 Connection ~ 1200 5700
-Text GLabel 2500 5600 2    50   Input ~ 0
+Text GLabel 2750 5600 2    50   Input ~ 0
 CFG0
-Text GLabel 2500 5700 2    50   Input ~ 0
+Text GLabel 2750 5700 2    50   Input ~ 0
 CFG1
 Wire Wire Line
-	1800 5600 1900 5600
-Wire Wire Line
-	2500 5700 1900 5700
-Wire Wire Line
-	1900 5600 1900 5500
-Wire Wire Line
-	1900 5500 2000 5500
-Connection ~ 1900 5600
-Wire Wire Line
-	1900 5600 2500 5600
-Wire Wire Line
-	2200 5500 2400 5500
-Wire Wire Line
-	2400 5500 2400 5350
-Wire Wire Line
-	1900 5700 1900 5800
-Wire Wire Line
-	1900 5800 2000 5800
-Connection ~ 1900 5700
-Wire Wire Line
-	1900 5700 1800 5700
-Wire Wire Line
-	2200 5800 2400 5800
-Wire Wire Line
-	2400 5800 2400 5500
-Connection ~ 2400 5500
-Text GLabel 6900 1450 2    50   Input ~ 0
+	2000 5250 2000 5200
+Text GLabel 4700 4050 0    50   Input ~ 0
 CFG0
 Wire Wire Line
 	6900 1450 6800 1450
-Text GLabel 6900 1550 2    50   Input ~ 0
+Text GLabel 4700 4150 0    50   Input ~ 0
 CFG1
 Wire Wire Line
 	6900 1550 6800 1550
@@ -1376,17 +1350,6 @@ Wire Wire Line
 	3300 3550 3550 3550
 Wire Wire Line
 	3300 3750 3550 3750
-$Comp
-L Connector_Generic:Conn_02x02_Odd_Even J3
-U 1 1 61481D01
-P 1600 5700
-F 0 "J3" H 1650 5500 50  0000 C CNN
-F 1 "Conn_02x02_Odd_Even" H 1650 5826 50  0001 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Horizontal" H 1600 5700 50  0001 C CNN
-F 3 "~" H 1600 5700 50  0001 C CNN
-	1    1600 5700
-	-1   0    0    1   
-$EndComp
 $Sheet
 S 2350 6650 1200 650 
 U 60FB7BC7
@@ -1404,7 +1367,7 @@ F 3 "https://www.xilinx.com/support/documentation/data_sheets/ds056.pdf" H 5800 
 	1    5800 3650
 	1    0    0    -1  
 $EndComp
-Text GLabel 4700 3850 0    50   Input ~ 0
+Text GLabel 4700 4250 0    50   Input ~ 0
 PMWR
 Wire Wire Line
 	6900 1350 6800 1350
@@ -1423,4 +1386,70 @@ F 3 "~" H 1150 7050 50  0001 C CNN
 	1    1150 7050
 	1    0    0    -1  
 $EndComp
+$Comp
+L Connector_Generic:Conn_02x03_Odd_Even J3
+U 1 1 60F81FA1
+P 1600 5700
+F 0 "J3" H 1650 5375 50  0000 C CNN
+F 1 "CFG" H 1650 5466 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Horizontal" H 1600 5700 50  0001 C CNN
+F 3 "~" H 1600 5700 50  0001 C CNN
+	1    1600 5700
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1800 5700 2300 5700
+Wire Wire Line
+	1800 5600 2000 5600
+Wire Wire Line
+	2000 5200 2300 5200
+Wire Wire Line
+	2300 5200 2300 5250
+Connection ~ 2000 5200
+Wire Wire Line
+	2000 5200 2000 5150
+$Comp
+L Device:R_Small R9
+U 1 1 60FC2B6D
+P 2600 5350
+F 0 "R9" H 2700 5300 50  0000 C CNN
+F 1 "10k" H 2700 5400 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 2600 5350 50  0001 C CNN
+F 3 "~" H 2600 5350 50  0001 C CNN
+	1    2600 5350
+	-1   0    0    1   
+$EndComp
+Text GLabel 2750 5800 2    50   Input ~ 0
+CFG2
+Wire Wire Line
+	2750 5800 2600 5800
+Wire Wire Line
+	1200 5800 1300 5800
+Connection ~ 1200 5800
+Wire Wire Line
+	1200 5800 1200 5700
+Wire Wire Line
+	2000 5450 2000 5600
+Connection ~ 2000 5600
+Wire Wire Line
+	2000 5600 2750 5600
+Wire Wire Line
+	2300 5450 2300 5700
+Connection ~ 2300 5700
+Wire Wire Line
+	2300 5700 2750 5700
+Wire Wire Line
+	2600 5450 2600 5800
+Connection ~ 2600 5800
+Wire Wire Line
+	2600 5800 1800 5800
+Wire Wire Line
+	2300 5200 2600 5200
+Wire Wire Line
+	2600 5200 2600 5250
+Connection ~ 2300 5200
+Wire Wire Line
+	4700 4350 4800 4350
+Text GLabel 4700 3950 0    50   Input ~ 0
+CFG2
 $EndSCHEMATC

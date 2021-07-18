@@ -2,9 +2,9 @@
 // $00000..$1FFFF - Sparta DOS X 4.49, 128k (SDX449_sdx128.rom)
 // $20000..$2FFFF - Sparta DOS X 4.22, 64k (SDX422.rom)
 //
-// Configuration (CFG1:CFG0):
-// 1x - Sparta DOS X 64k
-// 0x - Sparta DOS X 128k
+// Configuration (CFG2:CFG1:CFG0):
+// x1x - Sparta DOS X 64k
+// x0x - Sparta DOS X 128k
 //
 
 `timescale 1ns / 1ps
@@ -28,6 +28,7 @@ module main(
   output led_y, // LED3
   input cfg0,
   input cfg1,
+  input cfg2,
   output pmcs1,
   output pmrd,
   output pmwr,
