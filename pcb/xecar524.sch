@@ -1111,7 +1111,7 @@ Wire Wire Line
 	6900 4150 6800 4150
 Text GLabel 6900 4050 2    50   Input ~ 0
 ROM_D2
-Text GLabel 4700 4350 0    50   Input ~ 0
+Text GLabel 4700 4150 0    50   Input ~ 0
 PMCS1
 Text GLabel 4700 4450 0    50   Input ~ 0
 PMRD
@@ -1451,7 +1451,7 @@ Wire Wire Line
 	4700 4350 4800 4350
 Text GLabel 4700 3850 0    50   Input ~ 0
 CFG2
-Text GLabel 4700 4150 0    50   Input ~ 0
+Text GLabel 4700 4350 0    50   Input ~ 0
 MODE
 Wire Wire Line
 	4700 4150 4800 4150
