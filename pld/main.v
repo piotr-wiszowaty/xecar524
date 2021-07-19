@@ -35,21 +35,19 @@ module main(
   inout miso,   // PMD1
   inout sck);   // PMD0
 
-reg init = 0;
-reg sel_64k = 0;
-reg sel_128k = 0;
 reg [3:0] sdx_bank = 4'b1111;
 wire rtc = ~cctl_n && (cart_a[7:3] == 5'b10111);
+reg en_sdx = 1;
+reg en_car = 0;
 
-assign led_y = ~sel_64k;
-assign led_r = ~sel_128k;
+assign led_y = 1;
+assign led_r = 0;
 
 assign cart_d[7:0] = (rd4 & ~s4_n & s5_n & r_w & phi2) ? rom_d :
                      (rd5 & ~s5_n & s4_n & r_w & phi2) ? rom_d :
                      (rtc & r_w) ? {4'b0000, aux, mosi, miso, sck} :
                      8'hzz;
-assign rom_a = (sel_64k  & rd5 & ~s5_n) ? {3'b010, sdx_bank[2:0], cart_a[12:0]} :
-               (sel_128k & rd5 & ~s5_n) ? {2'b00, sdx_bank[3:0], cart_a[12:0]} :
+assign rom_a = (en_sdx & rd5 & ~s5_n) ? {2'b00, sdx_bank[3:0], cart_a[12:0]} :
                19'h00000;
 assign rom_d = 8'hzz;
 assign oe_n = ~(rd5 & ~s5_n & r_w);
@@ -57,24 +55,7 @@ assign we_n = 1;
 assign ce_n = ~(rd5 & ~s5_n);
 
 always @(posedge phi2) begin
-  if (~init) begin
-    init <= 1'b1;
-    sel_64k <= cfg1;
-    sel_128k <= ~cfg1;
-  end
-  if (sel_64k) begin
-    if (~cctl_n && ~r_w && (cart_a[7:4] == 4'b1110)) begin
-      if (cart_a[3]) begin
-        rd5 <= 1'b0;
-        sdx_bank[1:0] <= 2'b00;
-      end
-      else begin
-        rd5 <= 1'b1;
-        sdx_bank[2:0] <= ~cart_a[2:0];
-      end
-    end
-  end
-  else if (sel_128k) begin
+  if (en_sdx) begin
     if (~cctl_n && ~r_w && (cart_a[7:5] == 3'b111)) begin
       if (cart_a[3]) begin
         rd5 <= 1'b0;
