@@ -2,7 +2,7 @@
 // $00000..$1FFFF - Sparta DOS X 4.49, 128k (SDX449_sdx128.rom)
 // $20000..$23FFF - MAC/65 1.00 (MAC-65 v1.00 (1984)(OSS)(US)[!][043M mapping].bin)
 // $24000..$27FFF - MAC/65 1.02 (MAC-65 v1.02 (1984)(OSS)(US).bin)
-// $28000..$29FFF - 8k cartridge
+// $28000..$2BFFF - 16k cartridge
 
 `timescale 1ns / 1ps
 
@@ -45,7 +45,6 @@ assign led_y = ~en_sdx;
 assign led_r = ~en_car;
 
 assign cart_d[7:0] = (rd4 & ~s4_n & s5_n & r_w & phi2) ? rom_d :
-                     (rd5 & ~s5_n & s4_n & r_w & phi2 & (en_oss_043M || en_oss_034M) & oss_bank == 2'b11) ? 8'hff :   // illegal OSS bank selected
                      (rd5 & ~s5_n & s4_n & r_w & phi2) ? rom_d :
                      (rtc & r_w) ? {4'b0000, aux, mosi, miso, sck} :
                      8'hzz;
@@ -54,13 +53,13 @@ assign rom_a = (en_sdx & rd5 & ~s5_n) ? {2'b00, sdx_bank[3:0], cart_a[12:0]} :  
                (en_oss_043M & rd5 & ~s5_n &  cart_a[12]) ? {7'b0100011, cart_a[11:0]} :              // $B000..$BFFF
                (en_oss_034M & rd5 & ~s5_n & ~cart_a[12]) ? {5'b01001, oss_bank[1:0], cart_a[11:0]} : // $A000..$AFFF
                (en_oss_034M & rd5 & ~s5_n &  cart_a[12]) ? {7'b0100111, cart_a[11:0]} :              // $B000..$BFFF
-               //(en_car & rd4 & ~s4_n) ? {6'b010100, cart_a[12:0]} :                                // $8000..$9FFF
-               (en_car & rd5 & ~s5_n) ? {6'b010100, cart_a[12:0]} :                                  // $A000..$BFFF
+               (en_car & rd4 & ~s4_n) ? {6'b010100, cart_a[12:0]} :                                  // $8000..$9FFF
+               (en_car & rd5 & ~s5_n) ? {6'b010101, cart_a[12:0]} :                                  // $A000..$BFFF
                19'h00000;
 assign rom_d = 8'hzz;
-assign oe_n = ~(rd5 & ~s5_n & r_w);
+assign oe_n = ~(~ce_n & r_w);
 assign we_n = 1;
-assign ce_n = ~(rd5 & ~s5_n);
+assign ce_n = ~((rd4 & ~s4_n) | (rd5 & ~s5_n));
 
 always @(posedge phi2) begin
   if (~init) begin
@@ -69,25 +68,27 @@ always @(posedge phi2) begin
       2'b11 : en_sdx <= 1;
       2'b10 : en_oss_043M <= 1;
       2'b01 : en_oss_034M <= 1;
-      2'b00 : en_car <= 1;
+      2'b00 : begin rd4 <= 1; en_car <= 1; end
     endcase
   end
   if (en_sdx) begin
     if (~cctl_n && ~r_w && (cart_a[7:5] == 3'b111)) begin   // $D5E0..$D5FF
       casex (cart_a[3:2])
         2'b0x: begin // SDX on, cart off
+                 rd4 <= 0;
                  rd5 <= 1;
                  en_sdx <= 1;
                  en_car <= 0;
                  sdx_bank[3:0] <= {~cart_a[4], ~cart_a[2:0]};
                end
         2'b10: begin // SDX off, cart on
+                 rd4 <= 1;
                  rd5 <= 1;
                  en_sdx <= 0;
-                 //en_car <= 1;
-                 en_oss_034M <= 1;
+                 en_car <= 1;
                end
         2'b11: begin // SDX off, cart off
+                 rd4 <= 0;
                  rd5 <= 0;
                  en_sdx <= 0;
                  en_car <= 0;
