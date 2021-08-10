@@ -573,8 +573,6 @@ Wire Wire Line
 	2800 5350 2900 5350
 Wire Wire Line
 	2800 5250 2900 5250
-Text GLabel 6800 3000 2    50   Input ~ 0
-TEST0
 Text GLabel 6800 3100 2    50   Input ~ 0
 TEST1
 Text GLabel 5300 2800 0    50   Input ~ 0
@@ -586,8 +584,6 @@ Wire Wire Line
 Wire Wire Line
 	5350 2900 5300 2900
 Wire Wire Line
-	6800 3000 6750 3000
-Wire Wire Line
 	6750 3100 6800 3100
 Text Notes 8250 5000 2    50   ~ 0
 Epson MC-405
@@ -595,4 +591,17 @@ Text GLabel 5300 4000 0    50   Input ~ 0
 MODE
 Wire Wire Line
 	5300 4000 5350 4000
+$Comp
+L power:+3.3V #PWR0121
+U 1 1 6114F803
+P 6850 3000
+F 0 "#PWR0121" H 6850 2850 50  0001 C CNN
+F 1 "+3.3V" V 6865 3128 50  0000 L CNN
+F 2 "" H 6850 3000 50  0001 C CNN
+F 3 "" H 6850 3000 50  0001 C CNN
+	1    6850 3000
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6850 3000 6750 3000
 $EndSCHEMATC
