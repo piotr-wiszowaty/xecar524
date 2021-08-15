@@ -26,7 +26,7 @@ module main(
   output led_y, // LED3
   input cfg0,
   input cfg1,
-  input cfg2,
+  output cfg2,
   output pmcs1,
   output pmrd,
   output pmwr,
@@ -40,7 +40,7 @@ reg en_car_8k = 0;
 reg en_car_16k = 0;
 reg [3:0] sdx_bank = 4'b1111;
 reg [1:0] oss_bank = 2'b00;
-wire rtc = ~cctl_n && (cart_a[7:3] == 5'b10111);    // $D5B8..$D5BF
+wire rtc = ~cctl_n & (cart_a[7:3] == 5'b10111);    // $D5B8..$D5BF
 
 assign led_y = ~en_sdx;
 assign led_r = ~(en_car_8k | en_car_16k);
@@ -131,7 +131,9 @@ end
 
 assign pmrd = rtc & r_w;
 assign pmwr = rtc & ~r_w & phi2;
-assign pmcs1 = pmrd | pmwr;
+assign pmcs1 = rtc;
 assign pmd = (rtc & ~r_w) ? cart_d[3:0] : 4'bzzzz;
+
+assign cfg2 = ~rtc;
 
 endmodule

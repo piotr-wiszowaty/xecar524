@@ -1,5 +1,5 @@
 ; Fosc = 32 MHz
-
+;
 ; M3002
 ; [0] seconds
 ; [1] minutes
@@ -17,13 +17,13 @@
 ;     bit4 - 0: timer stop, 1: timer run
 ;     bit6:bit5 - 00: 256 Hz, 01: 1 sec, 10: min., 11: hour
 ;     bit7 - test bit, 0: normal operation
+;
+; RB2 - 3V3 detection
+;
+	.include "p24FJ32GA004.inc"
 
-	.include "p24FJ32GB002.inc"
-
-	config  __CONFIG1, ICS_PGx2 & FWDTEN_OFF & WINDIS_OFF & JTAGEN_OFF
-	config  __CONFIG2, PLLDIV_NODIV & PLL96MHZ_ON & FNOSC_FRCPLL
-	config	__CONFIG3, SOSCSEL_SOSC
-	config	__CONFIG4, DSBOREN_OFF
+	config  __CONFIG1, ICS_PGx1 & FWDTEN_OFF & WINDIS_OFF & JTAGEN_OFF
+	config  __CONFIG2, FNOSC_FRCPLL
 
 	.global __reset
 
@@ -31,11 +31,13 @@
 	.equ	STATE1, (state_1-jmp_wr)/2-1
 	.equ	STATE2, (state_2-jmp_wr)/2-1
 
+	.equ	VDD, RB2
+	.equ	TEST1, RB3
+	.equ	TEST2, RC0
+	.equ	TEST3, RC1
+
 	.text
 __reset:
-	bclr	DSCON, #RELEASE
-	bclr	DSCON, #DSEN
-
 	; init stack
 	mov	#__SP_init, w15
 	mov	#__SPLIM_init, w0
@@ -48,12 +50,27 @@ __reset:
 	; disable unused peripherals
 	mov	#0xf8f9, w0
 	mov	w0, PMD1
-	mov	#0x1e1f, w0
+	mov	#0x1f1f, w0
 	mov	w0, PMD2
 	mov	#0x0482, w0
 	mov	w0, PMD3
-	mov	#0x005f, w0
-	mov	w0, PMD4
+
+	; enable secondary oscillator
+	btsc	OSCCON, #SOSCEN
+	bra	sosc_enabled
+	mov	#OSCCONL, w1
+	mov	#0x46, w2
+	mov	#0x57, w3
+	mov.b	w2, [w1]
+	mov.b	w3, [w1]
+	bset	OSCCON, #SOSCEN
+sosc_enabled:
+
+	; setup main oscillator : 32 MHz
+	mov	#CLKDIV, w0
+	mov	[w0], w1
+	and	#0x00ff, w1
+	mov	w1, [w0]
 
 	; enable RTCC
 	mov	#0x55, w0
@@ -65,7 +82,6 @@ __reset:
 	bset	RCFGCAL, #RTCEN
 
 	; enable PMP
-	bset	PMADDR, #CS1
 	bset	PMAEN, #PTEN14
 	bset	PMCON, #PTWREN
 	bset	PMCON, #PTRDEN
@@ -75,17 +91,22 @@ __reset:
 	bset	PMCON, #RDSP
 	bset	PMCON, #PMPEN
 
+	; disable voltage regulator in sleep mode
+	bclr	RCON, #PMSLP
+
 	; setup I/O ports
-	bclr	TRISB, #5
-	bclr	TRISB, #14
-	bclr	TRISB, #15
+	mov	#0x0170, w0
+	mov	w0, TRISA
+	mov	#0x0004, w0
+	mov	w0, TRISB
+	mov	#0x0000, w0
+	mov	w0, TRISC
 
-	bset	LATB, #14
-	bset	LATB, #15
-
-	mov	#STATE0, w1
+	mov	#STATE0, w1		; state
 	mov	#0, w2			; addr
 	mov	#0, w3			; value
+	mov	#PMDIN1, w4
+	mov	#PMDOUT1, w5
 	mov	#RTCVALL, w8
 	mov	#RTCVALH, w9
 
@@ -93,50 +114,42 @@ loop:	btsc	PMSTAT, #OBE
 	bra	read_lo
 	btsc	PMSTAT, #IBF
 jmp_wr:	bra	w1
-	btss	PORTB, #7
+	btss	PORTB, #VDD
 	bra	goto_sleep
 	bra	loop
 read_lo:
 	mov	#STATE0, w1
 	and	w3, #0x0f, w0		; output value.lo
-	mov	w0, PMDOUT1
-	bclr	LATB, #5
+	mov.b	w0, [w5]
 	bra	loop
 state_0:
-	mov	PMDIN1, w0		; addr := PMDIN1
+	mov.b	[w4], w0		; addr := PMDIN1
 	and	w0, #0x0f, w2
 	call	load			; value := RTC[addr]
 	lsr	w3, #4, w0		; PMDOUT1 := value.hi
-	mov	w0, PMDOUT1
+	mov.b	w0, [w5]
 	mov	#STATE1, w1
-	bset	LATB, #5
 	bra	loop
 state_1:
-	mov	PMDIN1, w0		; value.hi := PMDIN1
+	mov.b	[w4], w0		; value.hi := PMDIN1
 	and	w0, #0x0f, w0
 	sl	w0, #4, w3
 	mov	#STATE2, w1
 	bra	loop
 state_2:
-	mov	PMDIN1, w0		; value.lo := PMDIN1
+	mov.b	[w4], w0		; value.lo := PMDIN1
 	and	w0, #0x0f, w0
 	ior	w0, w3, w3
 	call	save			; RTC[addr] := value
 	mov	#STATE0, w1
-	bclr	LATB, #5
 	bra	loop
 
 goto_sleep:
-	bclr	LATB, #14
-	bset	IEC0, #INT0IE
-	disi	#4
-	bset	DSCON, #DSEN		; deep sleep
-	nop
-	nop
-	nop
+	bset	CNEN1, #6
+	bset	IEC1, #CNIE
+	bclr	IFS1, #CNIF
 	pwrsav	#SLEEP_MODE
-	bclr	LATB, #15
-	
+
 ; RTC[w2] := w3
 save:	bra	w2
 	bra	save_seconds		; [0]
