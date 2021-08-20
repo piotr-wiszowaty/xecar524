@@ -59,14 +59,14 @@ NET "rom_a<16>" LOC = "P72";
 NET "rom_a<17>" LOC = "P76";
 NET "rom_a<18>" LOC = "P73";
 
-NET "pmcs1" LOC = "P30";
-NET "pmwr" LOC = "P32";
-NET "pmrd" LOC = "P34";
-NET "pmd<0>" LOC = "P35";
-NET "pmd<1>" LOC = "P36";
-NET "pmd<2>" LOC = "P37";
-NET "pmd<3>" LOC = "P39";
-NET "mode" LOC = "P33";
+NET "pmcs1" LOC = "P39";
+NET "pmwr" LOC = "P30";
+NET "pmrd" LOC = "P35";
+NET "pmd<0>" LOC = "P33";
+NET "pmd<1>" LOC = "P34";
+NET "pmd<2>" LOC = "P32";
+NET "pmd<3>" LOC = "P36";
+NET "sense3v3" LOC = "P37";
 
 NET "cfg0" LOC = "P28";
 NET "cfg1" LOC = "P29";

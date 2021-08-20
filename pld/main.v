@@ -31,7 +31,7 @@ module main(
   output pmrd,
   output pmwr,
   inout [3:0] pmd,
-  input mode);
+  output sense3v3);
 
 reg en_sdx = 1;
 reg en_oss_043M = 0;
@@ -44,6 +44,8 @@ wire rtc = ~cctl_n & (cart_a[7:3] == 5'b10111);    // $D5B8..$D5BF
 
 assign led_y = ~en_sdx;
 assign led_r = ~(en_car_8k | en_car_16k);
+
+assign sense3v3 = 1;
 
 assign cart_d[7:0] = (rd4 & ~s4_n & s5_n & r_w & phi2) ? rom_d :
                      (rd5 & ~s5_n & s4_n & r_w & phi2) ? rom_d :

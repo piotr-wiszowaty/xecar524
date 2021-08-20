@@ -18,12 +18,14 @@
 ;     bit6:bit5 - 00: 256 Hz, 01: 1 sec, 10: min., 11: hour
 ;     bit7 - test bit, 0: normal operation
 ;
-; RB2 - 3V3 detection
+; RB5/CN27 - 3V3 detection
 ;
-	.include "p24FJ32GA004.inc"
+	.include "p24FJ64GB004.inc"
 
-	config  __CONFIG1, ICS_PGx1 & FWDTEN_OFF & WINDIS_OFF & JTAGEN_OFF
-	config  __CONFIG2, FNOSC_FRCPLL
+	config	__CONFIG1, ICS_PGx3 & FWDTEN_OFF & WINDIS_OFF & JTAGEN_OFF
+	config	__CONFIG2, PLLDIV_NODIV & PLL96MHZ_ON & FNOSC_FRCPLL
+	config	__CONFIG3, SOSCSEL_SOSC
+	config	__CONFIG4, DSBOREN_OFF
 
 	.global __reset
 
@@ -31,13 +33,16 @@
 	.equ	STATE1, (state_1-jmp_wr)/2-1
 	.equ	STATE2, (state_2-jmp_wr)/2-1
 
-	.equ	VDD, RB2
-	.equ	TEST1, RB3
-	.equ	TEST2, RC0
-	.equ	TEST3, RC1
+	.equ	VDD, RB5
+	.equ	TEST0, RC0
+	.equ	TEST1, RC1
+	.equ	TEST2, RA8
 
 	.text
 __reset:
+	bclr	DSCON, #RELEASE
+	bclr	DSCON, #DSEN
+
 	; init stack
 	mov	#__SP_init, w15
 	mov	#__SPLIM_init, w0
@@ -50,27 +55,12 @@ __reset:
 	; disable unused peripherals
 	mov	#0xf8f9, w0
 	mov	w0, PMD1
-	mov	#0x1f1f, w0
+	mov	#0x1e1f, w0
 	mov	w0, PMD2
 	mov	#0x0482, w0
 	mov	w0, PMD3
-
-	; enable secondary oscillator
-	btsc	OSCCON, #SOSCEN
-	bra	sosc_enabled
-	mov	#OSCCONL, w1
-	mov	#0x46, w2
-	mov	#0x57, w3
-	mov.b	w2, [w1]
-	mov.b	w3, [w1]
-	bset	OSCCON, #SOSCEN
-sosc_enabled:
-
-	; setup main oscillator : 32 MHz
-	mov	#CLKDIV, w0
-	mov	[w0], w1
-	and	#0x00ff, w1
-	mov	w1, [w0]
+	mov	#0x005f, w0
+	mov	w0, PMD4
 
 	; enable RTCC
 	mov	#0x55, w0
@@ -82,6 +72,7 @@ sosc_enabled:
 	bset	RCFGCAL, #RTCEN
 
 	; enable PMP
+	bset	PMADDR, #CS1
 	bset	PMAEN, #PTEN14
 	bset	PMCON, #PTWREN
 	bset	PMCON, #PTRDEN
@@ -95,12 +86,15 @@ sosc_enabled:
 	bclr	RCON, #PMSLP
 
 	; setup I/O ports
-	mov	#0x0170, w0
-	mov	w0, TRISA
-	mov	#0x0004, w0
-	mov	w0, TRISB
-	mov	#0x0000, w0
-	mov	w0, TRISC
+	bclr	TRISA, #TEST2
+	bclr	TRISC, #TEST0
+	bclr	TRISC, #TEST1
+	;mov	#0x0170, w0
+	;mov	w0, TRISA
+	;mov	#0x0004, w0
+	;mov	w0, TRISB
+	;mov	#0x0000, w0
+	;mov	w0, TRISC
 
 	mov	#STATE0, w1		; state
 	mov	#0, w2			; addr
@@ -110,7 +104,8 @@ sosc_enabled:
 	mov	#RTCVALL, w8
 	mov	#RTCVALH, w9
 
-loop:	btsc	PMSTAT, #OBE
+loop:
+	btsc	PMSTAT, #OBE
 	bra	read_lo
 	btsc	PMSTAT, #IBF
 jmp_wr:	bra	w1
@@ -145,9 +140,13 @@ state_2:
 	bra	loop
 
 goto_sleep:
-	bset	CNEN1, #6
-	bset	IEC1, #CNIE
-	bclr	IFS1, #CNIF
+	bset	IEC0, #INT0IE
+	bclr	PMCON, #PMPEN
+	disi	#4
+	bset	DSCON, #DSEN		; deep sleep
+	nop
+	nop
+	nop
 	pwrsav	#SLEEP_MODE
 
 ; RTC[w2] := w3
@@ -239,7 +238,8 @@ fake_save:
 	return
 
 save_status:
-	; nop
+	mov	#status, w0
+	mov.b	w3, [w0]
 	return
 
 load_seconds:
@@ -294,10 +294,12 @@ fake_load:
 	return
 
 load_status:
-	mov	#0, w3
+	mov	#status, w0
+	mov.b	[w0], w3
 	return
 
 	.bss
 weekno:	.space	1
+status:	.space	1
 
 	.end

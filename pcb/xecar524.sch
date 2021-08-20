@@ -1111,13 +1111,13 @@ Wire Wire Line
 	6900 4150 6800 4150
 Text GLabel 6900 4050 2    50   Input ~ 0
 ROM_D2
-Text GLabel 4700 4150 0    50   Input ~ 0
+Text GLabel 6900 1550 2    50   Input ~ 0
 PMCS1
-Text GLabel 4700 4450 0    50   Input ~ 0
+Text GLabel 6900 1250 2    50   Input ~ 0
 PMRD
-Text GLabel 6900 1450 2    50   Input ~ 0
+Text GLabel 4700 4250 0    50   Input ~ 0
 PMD2
-Text GLabel 6900 1350 2    50   Input ~ 0
+Text GLabel 4700 4450 0    50   Input ~ 0
 PMD1
 Wire Wire Line
 	4700 4050 4800 4050
@@ -1175,9 +1175,9 @@ Text GLabel 6900 5550 2    50   Input ~ 0
 ROM_A18
 Wire Wire Line
 	6900 1650 6800 1650
-Text GLabel 6900 1550 2    50   Input ~ 0
+Text GLabel 6900 1350 2    50   Input ~ 0
 PMD3
-Text GLabel 6900 1250 2    50   Input ~ 0
+Text GLabel 4700 4350 0    50   Input ~ 0
 PMD0
 Wire Wire Line
 	6900 3150 6800 3150
@@ -1366,7 +1366,7 @@ F 3 "https://www.xilinx.com/support/documentation/data_sheets/ds056.pdf" H 5800 
 	1    5800 3650
 	1    0    0    -1  
 $EndComp
-Text GLabel 4700 4250 0    50   Input ~ 0
+Text GLabel 4700 4150 0    50   Input ~ 0
 PMWR
 Wire Wire Line
 	6900 1350 6800 1350
@@ -1380,7 +1380,7 @@ U 1 1 6123A3D4
 P 1150 7050
 F 0 "LOGO1" H 1150 7325 50  0001 C CNN
 F 1 "Logo_Open_Hardware_Small" H 1150 6825 50  0001 C CNN
-F 2 "Symbol:OSHW-Symbol_13.4x12mm_Copper" H 1150 7050 50  0001 C CNN
+F 2 "Symbol:OSHW-Symbol_8.9x8mm_Copper" H 1150 7050 50  0001 C CNN
 F 3 "~" H 1150 7050 50  0001 C CNN
 	1    1150 7050
 	1    0    0    -1  
@@ -1451,8 +1451,8 @@ Wire Wire Line
 	4700 4350 4800 4350
 Text GLabel 4700 3850 0    50   Input ~ 0
 CFG2
-Text GLabel 4700 4350 0    50   Input ~ 0
-MODE
 Wire Wire Line
 	4700 4150 4800 4150
+Text GLabel 6900 1450 2    50   Input ~ 0
+SENSE3V3
 $EndSCHEMATC
