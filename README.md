@@ -23,6 +23,6 @@ Cartridge Selection
 The cartridge image to switch to is selected with jumpers:
 
 * `CFG0`: off, `CFG1`: off - 043M OSS cartridge
-* `CFG0`: off, `CFG1`: on  - standard 16k cartridge
 * `CFG0`: on,  `CFG1`: off - 034M OSS cartridge
+* `CFG0`: off, `CFG1`: on  - standard 16k cartridge
 * `CFG0`: on,  `CFG1`: on  - standard 8k cartridge
