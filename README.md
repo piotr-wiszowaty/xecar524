@@ -1,9 +1,9 @@
 xecar524
 ========
 
-An [Atari XL/XE](http://en.wikipedia.org/wiki/Atari_8-bit_family) flash cartridge.
-The device handles up to 4 Mbit, 3.3V, PLCC-32 flash memories (e.g. SST39VF010,
-SST39VF020, SST39VF040).
+An [Atari XL/XE](http://en.wikipedia.org/wiki/Atari_8-bit_family) flash cartridge
+with a battery backed up R-Time 8 emulator. The device handles up to 4 Mbit,
+3.3V, PLCC-32 flash memories (e.g. SST39VF010, SST39VF020, SST39VF040).
 
 By default the base SDX image at `$00000` is loaded. Another cartridge image
 may be switched to by using `CAR` command.
